@@ -1,22 +1,14 @@
 import "./index.css";
 
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <div>
-            <ul>
-              <li>1</li>
-              <li>2</li>
-            </ul>
-          </div>
-        }
-      />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<div></div>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
