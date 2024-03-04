@@ -6,6 +6,12 @@ export default {
       colors: {
         primary: "#8c7ae6",
       },
+      fontSize: {
+        small: "12px",
+        medium: "14px",
+        large: "16px",
+        xLarge: "18px",
+      },
     },
   },
   corePlugins: {
