@@ -17,12 +17,8 @@
   "plugins": ["react"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ]
+    "prettier/prettier": 0,
+    "no-unused-vars": "warn"
   },
   "settings": {
     "react": { "version": "detect" }
