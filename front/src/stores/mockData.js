@@ -18,8 +18,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 2,
@@ -33,8 +34,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 3,
@@ -48,8 +50,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 4,
@@ -63,8 +66,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 5,
@@ -78,8 +82,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 6,
@@ -93,8 +98,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 7,
@@ -108,8 +114,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 8,
@@ -123,8 +130,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 9,
@@ -138,8 +146,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 10,
@@ -153,8 +162,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 11,
@@ -168,8 +178,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 12,
@@ -183,8 +194,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 13,
@@ -198,8 +210,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 14,
@@ -213,8 +226,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 15,
@@ -228,8 +242,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 16,
@@ -243,8 +258,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 17,
@@ -258,8 +274,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 18,
@@ -273,8 +290,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 19,
@@ -288,8 +306,9 @@ export const Products = [
     price: 10000,
     main_category: "의류",
     sub_category: "상의",
-    status: 0, // 판매중
-    type: 0, // 직거래
+    product_status: "중고", // 상품 상태 (중고 or 새상품)
+    type: 0, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
   {
     product_id: 20,
@@ -303,8 +322,9 @@ export const Products = [
     price: 100000,
     main_category: "전자기기",
     sub_category: "핸드폰",
-    status: 1, // 판매완료
-    type: 1, // 택배거래
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
   },
 ];
 
