@@ -10,13 +10,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Entity(name = "users")
-@Table(name = "users")
+@Entity(name = "user")
+@Table(name = "user")
 public class UsersEntity {
     @Id
-    private int userId;
+    private String userId;
+    private String userPassword;
+    private String userEmail;
     private String userNickname;
-    private String userAge;
     private String userProfile;
     private String userIntroduction;
+    private String userCode;
 }

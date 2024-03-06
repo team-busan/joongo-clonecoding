@@ -19,8 +19,8 @@ public class PostsEntity {
     private int postId;
 
     @ManyToOne
-    @Column(name = "user-id")
-    private int userId;
+    @Column(name = "user_id")
+    private String userId;
 
     private String mainUploadUrl;
     private String subUploadUrl;

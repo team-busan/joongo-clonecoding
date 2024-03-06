@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.joongomarket.entity.UsersEntity;
 
 @Repository
-public interface UserRepository extends JpaRepository<UsersEntity, Integer> {
-    UsersEntity findbuUserId(Integer userId);
+public interface UserRepository extends JpaRepository<UsersEntity, String> {
+    UsersEntity findByUserId(String userId);
     UsersEntity findByUserNicknname(String userNickname);
 }

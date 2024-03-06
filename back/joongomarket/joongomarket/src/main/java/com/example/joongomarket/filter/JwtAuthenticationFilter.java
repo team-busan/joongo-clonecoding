@@ -40,18 +40,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     return;
                 }
 
-                String userNickname = jwtProvider.validate(token);
-                if(userNickname == null) {
+                String userId = jwtProvider.validate(token);
+                if(userId == null) {
                     filterChain.doFilter(request, response);
                     return;
                 }
 
-                UsersEntity usersEntity = userRepository.findByUserNicknname(userNickname);
-                String nickName = usersEntity.getUserNickname();
+                UsersEntity usersEntity = userRepository.findByUserId(userId);
+                String user = usersEntity.getUserId();
 
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
 
-                AbstractAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(nickName, null);
+                AbstractAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user, null);
 
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 

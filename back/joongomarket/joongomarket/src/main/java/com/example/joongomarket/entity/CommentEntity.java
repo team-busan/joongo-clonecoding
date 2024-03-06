@@ -24,7 +24,7 @@ public class CommentEntity {
 
     @ManyToOne
     @Column(name = "user_id")
-    private int userId;
+    private String userId;
     
     private String commentContent;
     private String writeDateTime;
