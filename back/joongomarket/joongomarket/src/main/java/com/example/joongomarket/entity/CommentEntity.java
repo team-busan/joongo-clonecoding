@@ -18,12 +18,8 @@ public class CommentEntity {
     @Id
     private int commentId;
 
-    @ManyToOne
-    @Column(name = "post_id")
     private int postId;
 
-    @ManyToOne
-    @Column(name = "user_id")
     private String userId;
     
     private String commentContent;

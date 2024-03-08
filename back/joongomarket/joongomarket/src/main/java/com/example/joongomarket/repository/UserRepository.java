@@ -7,6 +7,10 @@ import com.example.joongomarket.entity.UsersEntity;
 
 @Repository
 public interface UserRepository extends JpaRepository<UsersEntity, String> {
+
     UsersEntity findByUserId(String userId);
-    UsersEntity findByUserNicknname(String userNickname);
+
+    boolean existsByUserId(String userId);
+
+    UsersEntity findByUserNickname(String userNickname);
 }

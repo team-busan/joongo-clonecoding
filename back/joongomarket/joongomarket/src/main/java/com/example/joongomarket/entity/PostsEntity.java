@@ -18,8 +18,6 @@ public class PostsEntity {
     @Id
     private int postId;
 
-    @ManyToOne
-    @Column(name = "user_id")
     private String userId;
 
     private String mainUploadUrl;
