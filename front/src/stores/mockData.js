@@ -1,9 +1,11 @@
-export const User = {
+export const User = [
+  {
   user_id: 1,
   user_nickname: "test",
   user_age: "20",
   user_profile: "https://source.unsplash.com/random/100x100",
-};
+}
+];
 
 export const Products = [
   {

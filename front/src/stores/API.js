@@ -1,6 +1,6 @@
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import { Products } from "./mockData";
+import { Products, User, Comments } from "./mockData";
 
 const BASE_URL = "http://localhost:8000/api";
 
@@ -40,8 +40,11 @@ const product_detail_url = new RegExp(`${API_URL.PRODUCT}/*`);
 
 axiosMock.onGet(product_detail_url).reply((config) => {
   const id = config.url.split("/").pop();
-  const product = Products.find((product) => product.product_id === Number(id));
-  return [200, product];
+  const product = Products.find((products) => products.product_id === Number(id));
+  const user = User.find((users)=> users.user_id === product.user_id);
+  const comment = Comments.filter((comments)=>comments.product_id === product.product_id);
+  const category_product = Products.filter((products)=> products.main_category === product.main_category);
+  return [200, {product, user, comment, category_product}];
 });
 
 export { axiosInstance, API_URL };
