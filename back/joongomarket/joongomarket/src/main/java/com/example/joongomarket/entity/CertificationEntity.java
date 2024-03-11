@@ -4,21 +4,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Entity(name = "user")
-@Table(name = "user")
-public class UsersEntity {
+@Entity(name = "certification")
+@Table(name = "certification")
+public class CertificationEntity {
     @Id
     private String userId;
-    private String userPassword;
-    private String userEmail;
-    private String userNickname;
-    private String userProfile;
-    private String userIntroduction;
+    private String email;
+    private String certificationNumber;
 
 }

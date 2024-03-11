@@ -2,7 +2,9 @@ package com.example.joongomarket.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.joongomarket.dto.request.auth.EmailCertificationRequestDto;
 import com.example.joongomarket.dto.request.auth.IdCheckRequestDto;
+import com.example.joongomarket.dto.response.auth.EmailCertificationResponseDto;
 import com.example.joongomarket.dto.response.auth.IdCheckResponseDto;
 import com.example.joongomarket.service.AuthService;
 
@@ -27,5 +29,14 @@ public class AuthController {
         ResponseEntity<? super IdCheckResponseDto> response = authService.idCheck(requestbody);
         return response;
     }
+
+    @PostMapping("/email-certification")
+    public ResponseEntity<? super EmailCertificationResponseDto> emailCertification(
+        @RequestBody @Valid EmailCertificationRequestDto requestBody
+    ) {
+        ResponseEntity<? super EmailCertificationResponseDto> response = authService.emailCertification(requestBody);
+        return response;
+    }
+    
 
 }
