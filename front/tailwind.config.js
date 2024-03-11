@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         primary: "#8c7ae6",
+       'light-gray': "#9CA3AF",
       },
       fontSize: {
         small: "12px",
