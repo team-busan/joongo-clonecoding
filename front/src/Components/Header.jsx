@@ -1,17 +1,15 @@
-import CategoryButton from "./header/CategoryButton";
-import Logo from "./header/Logo";
-import SearchBox from "./header/SearchBox";
-import ChatButton from "./header/ChatButton";
-import SellButton from "./header/SellButton";
-import MyPageButton from "./header/MyPageButton";
-import LoginOrSignUpButton from "./header/LoginOrSignUpButton";
+import DesktopHeader from "./header/DesktopHeader";
+import MobileHeader from "./header/MobileHeader";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, useAnimation, useScroll } from "framer-motion";
+
+import { useRecoilValue } from "recoil";
+import { userState } from "../atoms";
 
 const headerVariants = {
   top: {
-    boxShadow: "none",
+    boxShadow: "0 0 0 0 rgb(0 0 0)",
   },
   scroll: {
     boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
@@ -19,8 +17,11 @@ const headerVariants = {
 };
 
 const Header = () => {
+  const user = useRecoilValue(userState);
   const headerAnimation = useAnimation();
   const { scrollY } = useScroll();
+  const [width, setWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     scrollY.on("change", () => {
       if (scrollY.get() > 80) {
@@ -31,7 +32,14 @@ const Header = () => {
     });
   }, []);
 
-  const isLoggedIn = true;
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <motion.header
@@ -40,14 +48,7 @@ const Header = () => {
       initial="top"
       className="fixed top-0 flex justify-center w-full bg-white border-b-[1px] border-mediumGray"
     >
-      <div className="w-[1280px] h-[80px] relative flex items-center justify-between ">
-        <CategoryButton />
-        <Logo />
-        <SearchBox />
-        <ChatButton />
-        <SellButton />
-        {isLoggedIn ? <MyPageButton /> : <LoginOrSignUpButton />}
-      </div>
+      {width > 1024 ? <DesktopHeader user={user} /> : <MobileHeader />}
     </motion.header>
   );
 };

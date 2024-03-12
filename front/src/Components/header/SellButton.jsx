@@ -1,11 +1,12 @@
 import { MdAddShoppingCart } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const SellButton = () => {
   return (
-    <button className="flex items-center gap-1">
+    <Link to="/product/register" className="flex items-center gap-1">
       <MdAddShoppingCart className="text-2xl" />
       <span>판매하기</span>
-    </button>
+    </Link>
   );
 };
 
