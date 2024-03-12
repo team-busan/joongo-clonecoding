@@ -1,7 +1,6 @@
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import { User, Products, Bookmarks, Comments } from "./mockData";
-import { Products, User, Comments } from "./mockData";
 
 const BASE_URL = "http://localhost:8000/api";
 
