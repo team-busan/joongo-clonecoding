@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { axiosInstance, API_URL } from "../stores/API";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'; 
+import { axiosInstance } from '../stores/API';
 
 const ProductDetail = () => {
   const { id } = useParams(); 
@@ -9,7 +9,7 @@ const ProductDetail = () => {
   useEffect(() => {
     axiosInstance.get(`/product/${id}`) 
       .then((res) => {
-        setProducts(res.data.product);
+        setProducts(res.data);
       })
       .catch((error) => {
         console.log("Detail", error);
