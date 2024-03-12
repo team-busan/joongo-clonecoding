@@ -4,7 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
+        primaryLight: "#A28CE0",
         primary: "#8c7ae6",
+        primaryDark: "#7D64C3",
+        lightGray: "#F5F5F5",
+        mediumGray: "#D6D6D6",
+        darkGray: "#A6A6A6",
       },
       fontSize: {
         small: "12px",

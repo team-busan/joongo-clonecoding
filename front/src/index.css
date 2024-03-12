@@ -22,6 +22,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 * {
   font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+  margin-top: 80px;
 }
