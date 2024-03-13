@@ -11,4 +11,6 @@ public interface ResponseMessage {
 
     String MAIL_FAIL = "Mail send failed.";
     String DATABASE_ERROR = "Database error.";
+
+    String DUPLICATE_EMAIL = "Duplicate Email.";
 }

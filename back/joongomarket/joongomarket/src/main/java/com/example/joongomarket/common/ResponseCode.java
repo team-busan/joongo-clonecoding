@@ -12,4 +12,5 @@ public interface ResponseCode {
     String MAIL_FAIL = "MF";
     String DATABASE_ERROR = "EBE";
     
+    String DUPLICATE_EMAIL = "DE";
 }
