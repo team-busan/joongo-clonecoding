@@ -6,7 +6,7 @@ import { MdSearch, MdClose, MdArrowBackIosNew } from "react-icons/md";
 
 import SearchLogModal from "./SearchLogModal";
 
-const SearchBox = () => {
+const SearchBox = ({ setIsSearchBoxOpen }) => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const searchBox = useRef(null);
@@ -31,7 +31,10 @@ const SearchBox = () => {
 
   return (
     <div className="absolute lg:static w-full lg:w-auto flex items-center justify-between gap-4 bg-white">
-      <MdArrowBackIosNew className="lg:hidden" />
+      <MdArrowBackIosNew
+        className="cursor-pointer lg:hidden"
+        onClick={() => setIsSearchBoxOpen(false)}
+      />
       <div className="relative w-full">
         <MdSearch
           onClick={(e) => onSearchClick(e)}
