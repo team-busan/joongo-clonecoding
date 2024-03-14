@@ -9,7 +9,7 @@ const MyPageButton = () => {
 
   return (
     <Link to={`/user/${userId}`} className="flex items-center gap-1">
-      <MdOutlinePerson className="text-2xl" />
+      <MdOutlinePerson className="text-xl xl:text-2xl" />
       <span>마이페이지</span>
     </Link>
   );

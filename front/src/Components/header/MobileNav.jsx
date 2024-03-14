@@ -51,7 +51,7 @@ const MobileNav = ({ setIsMenuOpened }) => {
         initial="initial"
         animate="open"
         exit="close"
-        className="absolute left-0 w-96 h-screen bg-white grid grid-cols-1 grid-rows-[min-content_1fr_min-content]"
+        className="absolute left-0 w-full sm:w-96 h-screen bg-white grid grid-cols-1 grid-rows-[min-content_1fr_min-content]"
       >
         <div className="flex items-center justify-between p-[22px] border-b-[1px] border-lightGray">
           <Logo />
