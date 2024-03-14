@@ -16,7 +16,7 @@ const CategoryButton = () => {
         onMouseLeave={() => setIsMouseOver(false)}
         className="bg-primary px-3.5 flex items-center text-white gap-2 h-11 rounded-lg"
       >
-        <MdMenu />
+        <MdMenu className="text-lg" />
         <span>카테고리</span>
       </motion.button>
       <div
