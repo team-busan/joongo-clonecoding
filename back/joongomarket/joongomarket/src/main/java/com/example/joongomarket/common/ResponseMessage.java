@@ -13,4 +13,6 @@ public interface ResponseMessage {
     String DATABASE_ERROR = "Database error.";
 
     String DUPLICATE_EMAIL = "Duplicate Email.";
+    
+    String POST_FAIL = "Post Fail.";
 }

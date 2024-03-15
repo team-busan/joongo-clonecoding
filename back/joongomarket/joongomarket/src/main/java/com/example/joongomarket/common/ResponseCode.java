@@ -13,4 +13,6 @@ public interface ResponseCode {
     String DATABASE_ERROR = "EBE";
     
     String DUPLICATE_EMAIL = "DE";
+    
+    String POST_FAIL = "PF";
 }
