@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.joongomarket.dto.request.post.PostRequestDto;
 import com.example.joongomarket.dto.response.ResponseDto;
+import com.example.joongomarket.dto.response.post.GetPostResponseDto;
 import com.example.joongomarket.dto.response.post.PostResponseDto;
 import com.example.joongomarket.entity.PostsEntity;
 import com.example.joongomarket.entity.UsersEntity;
@@ -38,5 +39,21 @@ public class PostServiceImplement implements PostService {
         }
         return PostResponseDto.success();
     }
-    
+
+    @Override
+    public ResponseEntity<? super GetPostResponseDto> getPost(int postId) {
+        try{
+            PostsEntity postsEntity = postRepository.findByPostId(postId);
+            if(postsEntity == null) {
+                return GetPostResponseDto.existPost();
+            }else {
+                // poseEntity 안의 데이터를 가져오는 방법
+                return GetPostResponseDto.success(postsEntity);
+            }
+        }catch(Exception exception){
+            exception.printStackTrace();
+            return ResponseDto.databaseError();
+        }
+        
+    }
 }

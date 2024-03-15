@@ -7,5 +7,5 @@ import com.example.joongomarket.entity.PostsEntity;
 
 @Repository
 public interface PostRepository extends JpaRepository<PostsEntity, Integer> {
-    
+    PostsEntity findByPostId(int postId);
 }

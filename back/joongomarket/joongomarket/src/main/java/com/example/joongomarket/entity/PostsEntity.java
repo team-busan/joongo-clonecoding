@@ -20,9 +20,7 @@ import lombok.NoArgsConstructor;
 public class PostsEntity {
     @Id
     private int postId;
-
     private String userId;
-
     private String mainUploadUrl;
     private String subUploadUrl;
     private String title;

@@ -15,4 +15,5 @@ public interface ResponseCode {
     String DUPLICATE_EMAIL = "DE";
     
     String POST_FAIL = "PF";
+    String NOT_EXIST_POST = "NEP";
 }

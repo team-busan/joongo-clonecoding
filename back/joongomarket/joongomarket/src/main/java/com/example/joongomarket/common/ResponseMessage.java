@@ -15,4 +15,5 @@ public interface ResponseMessage {
     String DUPLICATE_EMAIL = "Duplicate Email.";
     
     String POST_FAIL = "Post Fail.";
+    String NOT_EXIST_POST = "Not Exist Post.";
 }

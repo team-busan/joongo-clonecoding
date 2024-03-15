@@ -2,12 +2,15 @@ package com.example.joongomarket.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.joongomarket.dto.request.post.PostRequestDto;
+import com.example.joongomarket.dto.response.post.GetPostResponseDto;
 import com.example.joongomarket.dto.response.post.PostResponseDto;
 import com.example.joongomarket.service.PostService;
 
@@ -27,6 +30,14 @@ public class PostController {
         @RequestBody @Valid PostRequestDto requestBody
     ) {
         ResponseEntity<? super PostResponseDto> response = postService.post(requestBody, userId);
+        return response;
+    }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<? super GetPostResponseDto> getPost(
+        @PathVariable("postId") int postId
+    ) {
+        ResponseEntity<? super GetPostResponseDto> response = postService.getPost(postId);
         return response;
     }
 }
