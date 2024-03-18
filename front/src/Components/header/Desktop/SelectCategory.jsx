@@ -7,7 +7,7 @@ import {
   furnitureSubCategories,
   livingSubCategories,
   hobbySubCategories,
-} from "../../Constants/Categories";
+} from "../../../Constants/Categories";
 
 const SelectCategory = ({ setIsMouseOver }) => {
   const [subCategoryName, setSubcategoryName] = useState(null);

@@ -1,5 +1,5 @@
-import DesktopHeader from "./header/DesktopHeader";
-import MobileHeader from "./header/MobileHeader";
+import DesktopHeader from "./header/Desktop/DesktopHeader";
+import MobileHeader from "./header/Mobile/MobileHeader";
 
 import { useState, useEffect } from "react";
 import { motion, useAnimation, useScroll } from "framer-motion";

@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import Logo from "./Logo";
+import Logo from "../Logo.jsx";
 import MobileNavLi from "./MobileNavLi.jsx";
 
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { userState } from "../../atoms.js";
+import { userState } from "../../../atoms.js";
 
 import { MdClose } from "react-icons/md";
 import GitHubCard from "./GitHubCard.jsx";

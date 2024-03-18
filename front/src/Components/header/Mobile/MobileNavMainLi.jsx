@@ -11,7 +11,7 @@ import {
   furnitureSubCategories,
   livingSubCategories,
   hobbySubCategories,
-} from "../../Constants/Categories.js";
+} from "../../../Constants/Categories.js";
 
 const MobileNavMainLi = ({ handleClickMenuClose, value, link }) => {
   const [open, setOpen] = useState(false);

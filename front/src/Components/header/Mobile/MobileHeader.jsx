@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Logo from "./Logo";
+import Logo from "../Logo";
 import MobileNav from "./MobileNav";
 
 import { MdMenu, MdSearch } from "react-icons/md";
-import SearchBox from "./SearchBox";
+import SearchBox from "../SearchBox";
 
 import { AnimatePresence } from "framer-motion";
 
