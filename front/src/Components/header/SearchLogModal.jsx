@@ -59,7 +59,7 @@ const SearchLogModal = () => {
   ]);
 
   return (
-    <div className="absolute top-10 left-[-47px] lg:left-0 px-5 pt-14 w-screen lg:w-[500px] h-[472px] bg-white shadow">
+    <div className="absolute top-10 left-[-47px] lg:left-0 px-5 pt-14 w-screen lg:w-[400px] xl:w-[500px] h-[472px] bg-white shadow">
       <SearchLogMap isProduct={true} array={productSearchLog} />
       <SearchLogMap isProduct={false} array={sellerSearchLog} />
     </div>

@@ -7,7 +7,7 @@ import SearchBox from "../SearchBox";
 
 import { AnimatePresence } from "framer-motion";
 
-const MobileHeader = () => {
+const MobileHeader = ({ user, setUser }) => {
   const [isSearchBoxOpened, setIsSearchBoxOpen] = useState(false);
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
@@ -30,7 +30,13 @@ const MobileHeader = () => {
         )}
       </div>
       <AnimatePresence>
-        {isMenuOpened && <MobileNav setIsMenuOpened={setIsMenuOpened} />}
+        {isMenuOpened && (
+          <MobileNav
+            user={user}
+            setUser={setUser}
+            setIsMenuOpened={setIsMenuOpened}
+          />
+        )}
       </AnimatePresence>
     </>
   );

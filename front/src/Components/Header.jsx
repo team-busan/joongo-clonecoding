@@ -4,7 +4,7 @@ import MobileHeader from "./header/Mobile/MobileHeader";
 import { useState, useEffect } from "react";
 import { motion, useAnimation, useScroll } from "framer-motion";
 
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { userState } from "../atoms";
 
 const headerVariants = {
@@ -17,7 +17,7 @@ const headerVariants = {
 };
 
 const Header = () => {
-  const user = useRecoilValue(userState);
+  const [user, setUser] = useRecoilState(userState);
   const headerAnimation = useAnimation();
   const { scrollY } = useScroll();
   const [width, setWidth] = useState(window.innerWidth);
@@ -48,7 +48,11 @@ const Header = () => {
       initial="top"
       className="fixed top-0 flex justify-center w-full bg-white border-b-[1px] border-mediumGray"
     >
-      {width > 1024 ? <DesktopHeader user={user} /> : <MobileHeader />}
+      {width > 1024 ? (
+        <DesktopHeader user={user} />
+      ) : (
+        <MobileHeader user={user} setUser={setUser} />
+      )}
     </motion.header>
   );
 };

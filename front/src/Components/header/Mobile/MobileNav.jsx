@@ -3,8 +3,6 @@ import Logo from "../Logo.jsx";
 import MobileNavLi from "./MobileNavLi.jsx";
 
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { userState } from "../../../atoms.js";
 
 import { MdClose } from "react-icons/md";
 import GitHubCard from "./GitHubCard.jsx";
@@ -20,9 +18,8 @@ const blurVariants = {
   close: { opacity: 0 },
 };
 
-const MobileNav = ({ setIsMenuOpened }) => {
+const MobileNav = ({ user, setUser, setIsMenuOpened }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useRecoilState(userState);
   const handleClickMenuClose = () => setIsMenuOpened(false);
   const handleKeyDownMenuClose = (e) => {
     if (e.key === "Esc") {
