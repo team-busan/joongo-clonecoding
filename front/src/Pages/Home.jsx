@@ -1,7 +1,11 @@
+import Adslider from "../Components/home/Adslider";
+
 const Home = () => {
   return (
-    <div className="bg-blue-50 tablet:bg-blue-500 desktop:bg-blue-900">
-      Home
+    <div className="px-0 tablet:px-8 w-full flex justify-center">
+      <div className="w-full tablet:w-[1024px] desktop:w-[1280px]">
+        <Adslider />
+      </div>
     </div>
   );
 };
