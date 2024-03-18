@@ -17,6 +17,10 @@ export default {
         large: "16px",
         xLarge: "18px",
       },
+      screens: {
+        tablet: "1024px",
+        desktop: "1600px",
+      },
     },
   },
   corePlugins: {
