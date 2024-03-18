@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
+import { Link } from "react-router-dom";
 
 import {
   mainCategories,
@@ -7,7 +9,7 @@ import {
   furnitureSubCategories,
   livingSubCategories,
   hobbySubCategories,
-} from "../../Constants/Categories";
+} from "../../../Constants/Categories";
 
 const SelectCategory = ({ setIsMouseOver }) => {
   const [subCategoryName, setSubcategoryName] = useState(null);
@@ -29,7 +31,7 @@ const SelectCategory = ({ setIsMouseOver }) => {
 
   return (
     <div
-      className="absolute left-0 top-[64px] w-64 shadow bg-white"
+      className="absolute left-0 top-[62px] w-64 shadow bg-white"
       onMouseLeave={() => setIsMouseOver(false)}
     >
       <div className="relative">
@@ -39,22 +41,32 @@ const SelectCategory = ({ setIsMouseOver }) => {
               <li
                 key={index}
                 onMouseEnter={() => setSubcategoryName(category)}
-                className="px-4 py-2 cursor-pointer hover:bg-mediumGray first:mt-6 last:mb-6"
+                className="hover:bg-mediumGray first:mt-6 last:mb-6"
               >
-                {category}
+                <Link
+                  className="block pl-4 py-2 w-full"
+                  to={`/search?category=${category}`}
+                >
+                  {category}
+                </Link>
               </li>
             );
           })}
         </ul>
-        <div className="absolute top-[-25px] right-[-257px] w-64 shadow bg-lightGray">
+        <div className="absolute top-[-25px] right-[-256px] w-64 shadow bg-lightGray">
           <ul>
             {subCategoryList.map((category, index) => {
               return (
                 <li
                   key={index}
-                  className="px-4 py-2 font-medium cursor-pointer hover:bg-mediumGray first:mt-6 last:mb-6"
+                  className="hover:bg-mediumGray first:mt-6 last:mb-6"
                 >
-                  {category}
+                  <Link
+                    className="block pl-4 py-2 font-medium"
+                    to={`/search?category=${category}`}
+                  >
+                    {category}
+                  </Link>
                 </li>
               );
             })}

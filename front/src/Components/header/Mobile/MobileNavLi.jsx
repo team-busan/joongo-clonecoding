@@ -5,7 +5,7 @@ import { FaAngleDown } from "react-icons/fa6";
 
 import MobileNavMainLi from "./MobileNavMainLi.jsx";
 
-import { mainCategories } from "../../Constants/Categories.js";
+import { mainCategories } from "../../../Constants/Categories.js";
 
 const MobileNavLi = ({ handleClickMenuClose, value, link, isExtendable }) => {
   const [open, setOpen] = useState(false);
