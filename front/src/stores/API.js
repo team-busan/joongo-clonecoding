@@ -24,20 +24,19 @@ const axiosMock = new AxiosMockAdapter(axiosInstance, {
 });
 
 axiosMock.onGet(API_URL.HOME).reply(() => {
-  const resent = Products.slice(0, 7);
-  const age = Products.slice(7, 11);
+  const recent = Products.slice(0, 7);
+  const hot = Products.slice(7, 11);
   const random = Products.slice(11, 16);
-  return [200, { resent, age, random }];
+  return [200, { recent, hot, random }];
 });
 
 axiosMock.onGet(API_URL.SEARCH).reply(() => {
   try {
     const products = [Products];
     return [200, products];
-  }
-  catch(error){
+  } catch (error) {
     console.log(error);
-    return [500, {message : "Internal server error"}];
+    return [500, { message: "Internal server error" }];
   }
 });
 

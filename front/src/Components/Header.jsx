@@ -46,7 +46,7 @@ const Header = () => {
       variants={headerVariants}
       animate={headerAnimation}
       initial="top"
-      className="fixed top-0 flex justify-center w-full bg-white border-b-[1px] border-mediumGray"
+      className="fixed z-10 top-0 flex justify-center w-full bg-white border-b-[1px] border-mediumGray"
     >
       {width > 1024 ? (
         <DesktopHeader user={user} />
