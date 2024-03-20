@@ -1,11 +1,16 @@
 export const User = [
   {
-  user_id: 1,
-  user_nickname: "test",
-  user_age: "20",
-  user_profile: "https://source.unsplash.com/random/100x100",
-}
+    user_id: 1,
+    user_nickname: "test",
+    user_age: "20",
+    user_profile: "https://source.unsplash.com/random/100x100",
+  },
 ];
+
+/*
+  type 0 = 직거래, 1 = 택배거래, 2 = 직거래,택배거래
+  sales_status 0 = 판매중, 1 = 판매완료
+*/
 
 export const Products = [
   {
