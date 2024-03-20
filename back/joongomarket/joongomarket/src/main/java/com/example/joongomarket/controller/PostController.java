@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.joongomarket.dto.request.post.PostRequestDto;
 import com.example.joongomarket.dto.response.post.GetPostListResponseDto;
+import com.example.joongomarket.dto.response.post.GetPostMyListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostResponseDto;
 import com.example.joongomarket.dto.response.post.PostResponseDto;
 import com.example.joongomarket.service.PostService;
@@ -47,6 +48,14 @@ public class PostController {
     @GetMapping("/list")
     public ResponseEntity<? super List<GetPostListResponseDto>> getList() {
         ResponseEntity<? super List<GetPostListResponseDto>> response = postService.getList();
+        return response;
+    }
+
+    @GetMapping("/my-list")
+    public ResponseEntity<? super List<GetPostMyListResponseDto>> getMyList(
+        @AuthenticationPrincipal String userId
+    ) {
+        ResponseEntity<? super List<GetPostMyListResponseDto>> response = postService.getMyList(userId);
         return response;
     }
 }
