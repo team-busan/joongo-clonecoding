@@ -16,8 +16,8 @@ export const Products = [
     write_date_time: Date.now(),
     view_count: 10,
     price: 10000,
-    main_category: "의류",
-    sub_category: "상의",
+    main_category: "전자기기",
+    sub_category: "가전제품",
     status: 0, // 판매중
     type: 0, // 직거래
   },
