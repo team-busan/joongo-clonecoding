@@ -11,4 +11,5 @@ import com.example.joongomarket.entity.PostsEntity;
 public interface PostRepository extends JpaRepository<PostsEntity, Integer> {
     PostsEntity findByPostId(int postId);
     List<PostsEntity> findByOrderByWriteDateTimeDesc();
+    List<PostsEntity> findByUserIdOrderByWriteDateTimeDesc(String userId);
 }

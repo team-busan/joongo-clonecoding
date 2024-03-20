@@ -11,6 +11,7 @@ import com.example.joongomarket.common.ResponseMessage;
 import com.example.joongomarket.dto.request.post.PostRequestDto;
 import com.example.joongomarket.dto.response.ResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostListResponseDto;
+import com.example.joongomarket.dto.response.post.GetPostMyListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostResponseDto;
 import com.example.joongomarket.dto.response.post.PostResponseDto;
 import com.example.joongomarket.dto.response.post.filed.GetPostListItemDto;
@@ -30,6 +31,7 @@ public class PostServiceImplement implements PostService {
 
     private final UserRepository userRepository;
 
+    //? 게시물 업로드
     @Override
     public ResponseEntity<? super PostResponseDto> post(PostRequestDto dto, String userId) {
         try {
@@ -47,6 +49,7 @@ public class PostServiceImplement implements PostService {
         return PostResponseDto.success();
     }
 
+    //? 특정 게시물 가져오기
     @Override
     public ResponseEntity<? super GetPostResponseDto> getPost(int postId) {
         try{
@@ -54,7 +57,6 @@ public class PostServiceImplement implements PostService {
             if(postsEntity == null) {
                 return GetPostResponseDto.existPost();
             }else {
-                // poseEntity 안의 데이터를 가져오는 방법
                 return GetPostResponseDto.success(postsEntity);
             }
         }catch(Exception exception){
@@ -64,6 +66,7 @@ public class PostServiceImplement implements PostService {
         
     }
 
+    //? 전체 게시물 리스트 가져오기
     @Override
     public ResponseEntity<? super List<GetPostListResponseDto>> getList() {
         try {
@@ -81,5 +84,21 @@ public class PostServiceImplement implements PostService {
             ResponseDto errorResponse = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
+    }
+
+    //? 자신의 게시물 리스트 가져오기
+    @Override
+    public ResponseEntity<? super List<GetPostMyListResponseDto>> getMyList(String userId) {
+        try {
+            List<PostsEntity> postMyList = postRepository.findByUserIdOrderByWriteDateTimeDesc(userId);
+            List<GetPostListItemDto> response = GetPostListItemDto.copyList(postMyList);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+
+            ResponseDto errorResponse = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
+        
     }
 }
