@@ -16,4 +16,6 @@ public interface ResponseCode {
     
     String POST_FAIL = "PF";
     String NOT_EXIST_POST = "NEP";
+
+    String NOT_EXIST_USER = "NEU";
 }

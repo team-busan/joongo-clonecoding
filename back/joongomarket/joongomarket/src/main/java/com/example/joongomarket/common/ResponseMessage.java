@@ -16,4 +16,6 @@ public interface ResponseMessage {
     
     String POST_FAIL = "Post Fail.";
     String NOT_EXIST_POST = "Not Exist Post.";
+
+    String NOT_EXIST_USER = "Not Exist User.";
 }

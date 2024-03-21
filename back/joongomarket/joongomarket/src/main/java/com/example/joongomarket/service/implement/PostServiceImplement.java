@@ -3,20 +3,25 @@ package com.example.joongomarket.service.implement;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.joongomarket.common.ResponseCode;
 import com.example.joongomarket.common.ResponseMessage;
+import com.example.joongomarket.dto.request.post.PostCommentRequestDto;
 import com.example.joongomarket.dto.request.post.PostRequestDto;
 import com.example.joongomarket.dto.response.ResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostMyListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostResponseDto;
+import com.example.joongomarket.dto.response.post.PostCommentResponseDto;
 import com.example.joongomarket.dto.response.post.PostResponseDto;
 import com.example.joongomarket.dto.response.post.filed.GetPostListItemDto;
+import com.example.joongomarket.entity.CommentEntity;
 import com.example.joongomarket.entity.PostsEntity;
 import com.example.joongomarket.entity.UsersEntity;
+import com.example.joongomarket.repository.CommentRepository;
 import com.example.joongomarket.repository.PostRepository;
 import com.example.joongomarket.repository.UserRepository;
 import com.example.joongomarket.service.PostService;
@@ -30,6 +35,8 @@ public class PostServiceImplement implements PostService {
     private final PostRepository postRepository;
 
     private final UserRepository userRepository;
+
+    private final CommentRepository commentRepository;
 
     //? 게시물 업로드
     @Override
@@ -100,5 +107,31 @@ public class PostServiceImplement implements PostService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
         
+    }
+
+    @Override
+    public ResponseEntity<? super PostCommentResponseDto> postComment(String userId, PostCommentRequestDto dto) {
+        int postId = dto.getPostId();
+        try {
+            UsersEntity usersEntity = userRepository.findByUserId(userId);
+            if(usersEntity == null) {
+                return PostCommentResponseDto.existUser();
+            }
+
+            PostsEntity postsEntity = postRepository.findByPostId(postId);
+            if(postsEntity == null) {
+                return PostCommentResponseDto.existPost();
+            }
+
+            CommentEntity commentEntity = new CommentEntity(usersEntity, dto);
+            commentRepository.save(commentEntity);
+
+            List<CommentEntity> commentList = commentRepository.findByPostIdOrderByWriteDateTimeDesc(postId);
+
+            return ResponseEntity.ok().body(PostCommentResponseDto.success(postsEntity, commentList));
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return PostCommentResponseDto.postCommentFail();
+        }
     }
 }

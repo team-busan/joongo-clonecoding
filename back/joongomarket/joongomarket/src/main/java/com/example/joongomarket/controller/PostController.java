@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.joongomarket.dto.request.post.PostCommentRequestDto;
 import com.example.joongomarket.dto.request.post.PostRequestDto;
 import com.example.joongomarket.dto.response.post.GetPostListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostMyListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostResponseDto;
+import com.example.joongomarket.dto.response.post.PostCommentResponseDto;
 import com.example.joongomarket.dto.response.post.PostResponseDto;
 import com.example.joongomarket.service.PostService;
 
@@ -56,6 +58,15 @@ public class PostController {
         @AuthenticationPrincipal String userId
     ) {
         ResponseEntity<? super List<GetPostMyListResponseDto>> response = postService.getMyList(userId);
+        return response;
+    }
+
+    @PostMapping("/comment")
+    public ResponseEntity<? super PostCommentResponseDto> postComment(
+        @AuthenticationPrincipal String userId,
+        @RequestBody @Valid PostCommentRequestDto requestBody
+    ) {
+        ResponseEntity<? super PostCommentResponseDto> response = postService.postComment(userId, requestBody);
         return response;
     }
 }
