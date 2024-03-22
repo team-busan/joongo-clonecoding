@@ -1,0 +1,33 @@
+package com.example.joongomarket.dto.response.auth;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.example.joongomarket.common.ResponseCode;
+import com.example.joongomarket.common.ResponseMessage;
+import com.example.joongomarket.dto.response.ResponseDto;
+
+import lombok.Getter;
+
+@Getter
+public class SignInResponseDto extends ResponseDto {
+
+    private String token;
+    private int expirationTime;
+
+    private SignInResponseDto(String token) {
+        super();
+        this.token = token;
+        this.expirationTime = 3600;
+    }
+
+    public static ResponseEntity<SignInResponseDto> success (String token) {
+        SignInResponseDto responseBody = new SignInResponseDto(token);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
+
+    public static ResponseEntity<ResponseDto> singInFail() {
+        ResponseDto responseBody = new ResponseDto(ResponseCode.SIGN_IN_FALE, ResponseMessage.SIGN_IN_FALE);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(responseBody);
+    }
+}

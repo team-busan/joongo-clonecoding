@@ -22,6 +22,50 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 * {
   font-family: "Noto Sans KR", sans-serif;
 }
+
+body {
+  margin-top: 80px;
+}
+/* 
+.slick-prev {
+  top: 45% !important;
+  left: -5% !important;
+  z-index: 1 !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.slick-prev:before {
+  font-family: "Font Awesome 5 Free" !important;
+  content: "<" !important;
+  color: black !important;
+  font-size: 48px !important;
+}
+
+.slick-next {
+  top: 45% !important;
+  right: -4% !important;
+  z-index: 1 !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.slick-next:before {
+  font-family: "Font Awesome 5 Free" !important;
+  content: ">" !important;
+  color: black !important;
+  font-size: 48px !important;
+} */
