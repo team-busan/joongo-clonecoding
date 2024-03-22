@@ -44,7 +44,8 @@ axiosMock.onGet(product_detail_url).reply((config) => {
   const user = User.find((users)=> users.user_id === product.user_id);
   const comment = Comments.filter((comments)=>comments.product_id === product.product_id);
   const category_product = Products.filter((products)=> products.main_category === product.main_category);
-  return [200, {product, user, comment, category_product}];
+  const sales_product = Products.filter((products)=> products.user_id === user.user_id && !products.sales_status);
+  return [200, {product, user, comment, category_product, sales_product}];
 });
 
 export { axiosInstance, API_URL };
