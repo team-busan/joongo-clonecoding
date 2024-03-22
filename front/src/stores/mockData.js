@@ -349,5 +349,16 @@ export const Comments = [
     user_id: 1,
     comment_content: "댓글1",
     write_date_time: Date.now(),
+    user_profile: "https://source.unsplash.com/random/100x100",
+    user_nickname: "test",
+  },
+  {
+    comment_id: 2,
+    product_id: 1,
+    user_id: 1,
+    comment_content: "댓글2",
+    write_date_time: Date.now(),
+    user_profile: "https://source.unsplash.com/random/100x100",
+    user_nickname: "test",
   },
 ];
