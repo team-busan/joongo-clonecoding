@@ -3,24 +3,27 @@ package com.example.joongomarket.service.implement;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.joongomarket.common.ResponseCode;
 import com.example.joongomarket.common.ResponseMessage;
+import com.example.joongomarket.dto.request.post.PostBookmarkReqeustDto;
 import com.example.joongomarket.dto.request.post.PostCommentRequestDto;
 import com.example.joongomarket.dto.request.post.PostRequestDto;
 import com.example.joongomarket.dto.response.ResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostMyListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostResponseDto;
+import com.example.joongomarket.dto.response.post.PostBookmarkResponseDto;
 import com.example.joongomarket.dto.response.post.PostCommentResponseDto;
 import com.example.joongomarket.dto.response.post.PostResponseDto;
 import com.example.joongomarket.dto.response.post.filed.GetPostListItemDto;
+import com.example.joongomarket.entity.BookmarkEntity;
 import com.example.joongomarket.entity.CommentEntity;
 import com.example.joongomarket.entity.PostsEntity;
 import com.example.joongomarket.entity.UsersEntity;
+import com.example.joongomarket.repository.BookmarkRepository;
 import com.example.joongomarket.repository.CommentRepository;
 import com.example.joongomarket.repository.PostRepository;
 import com.example.joongomarket.repository.UserRepository;
@@ -38,6 +41,8 @@ public class PostServiceImplement implements PostService {
 
     private final CommentRepository commentRepository;
 
+    private final BookmarkRepository bookmarkRepository;
+
     //? 게시물 업로드
     @Override
     public ResponseEntity<? super PostResponseDto> post(PostRequestDto dto, String userId) {
@@ -46,14 +51,14 @@ public class PostServiceImplement implements PostService {
             if(usersEntity != null) {
                 PostsEntity postsEntity = new PostsEntity(dto, usersEntity);
                 postRepository.save(postsEntity);
+                return PostResponseDto.success();
             }else {
-                PostResponseDto.postFail();
+                return PostResponseDto.postFail();
             }
         } catch (Exception exception) {
             exception.printStackTrace();
             return ResponseDto.databaseError();
         }
-        return PostResponseDto.success();
     }
 
     //? 특정 게시물 가져오기
@@ -64,7 +69,8 @@ public class PostServiceImplement implements PostService {
             if(postsEntity == null) {
                 return GetPostResponseDto.existPost();
             }else {
-                return GetPostResponseDto.success(postsEntity);
+                List<CommentEntity> commentList = commentRepository.findByPostIdOrderByWriteDateTimeDesc(postId);
+                return GetPostResponseDto.success(postsEntity, commentList);
             }
         }catch(Exception exception){
             exception.printStackTrace();
@@ -109,6 +115,7 @@ public class PostServiceImplement implements PostService {
         
     }
 
+    //? 댓글 요청 +반환
     @Override
     public ResponseEntity<? super PostCommentResponseDto> postComment(String userId, PostCommentRequestDto dto) {
         int postId = dto.getPostId();
@@ -132,6 +139,36 @@ public class PostServiceImplement implements PostService {
         } catch (Exception exception) {
             exception.printStackTrace();
             return PostCommentResponseDto.postCommentFail();
+        }
+    }
+
+    @Override
+    public ResponseEntity<? super PostBookmarkResponseDto> postBookmark(String userId, PostBookmarkReqeustDto dto) {
+        int postId = dto.getPostId();
+        try {
+            UsersEntity usersEntity = userRepository.findByUserId(userId);
+            if(usersEntity == null) {
+                return PostBookmarkResponseDto.existUser();
+            }
+            PostsEntity postsEntity = postRepository.findByPostId(postId);
+            if(postsEntity == null) {
+                return PostBookmarkResponseDto.existPost();
+            }
+
+            BookmarkEntity bookmarkEntity = bookmarkRepository.findByUserIdAndPostId(userId, postId);
+            if(bookmarkEntity == null) {
+                bookmarkEntity = new BookmarkEntity(userId, postId);
+                bookmarkRepository.save(bookmarkEntity);
+            }else {
+                bookmarkRepository.delete(bookmarkEntity);
+            }
+
+            List<BookmarkEntity> bookmarkList = bookmarkRepository.findByPostId(postId);
+
+            return ResponseEntity.ok().body(PostBookmarkResponseDto.success(postsEntity, bookmarkList));
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return PostBookmarkResponseDto.postBookmarkFail();
         }
     }
 }
