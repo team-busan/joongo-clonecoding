@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import com.example.joongomarket.common.ResponseCode;
 import com.example.joongomarket.common.ResponseMessage;
 import com.example.joongomarket.dto.response.ResponseDto;
-import com.example.joongomarket.entity.CommentEntity;
+import com.example.joongomarket.entity.BookmarkEntity;
 import com.example.joongomarket.entity.PostsEntity;
 
 import lombok.Getter;
@@ -16,19 +16,20 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PostCommentResponseDto extends ResponseDto{
+public class PostBookmarkResponseDto extends ResponseDto {
+
     private PostsEntity postsEntity;
 
-    private List<CommentEntity> commentList;
+    private List<BookmarkEntity> bookmarkList;
 
-    private PostCommentResponseDto() {
+    private PostBookmarkResponseDto() {
         super();
     }
 
-    public static ResponseEntity<PostCommentResponseDto> success(PostsEntity postsEntity, List<CommentEntity> commentList) {
-        PostCommentResponseDto responseBody = new PostCommentResponseDto();
+    public static ResponseEntity<PostBookmarkResponseDto> success(PostsEntity postsEntity, List<BookmarkEntity> bookmarkList) {
+        PostBookmarkResponseDto responseBody = new PostBookmarkResponseDto();
         responseBody.setPostsEntity(postsEntity);
-        responseBody.setCommentList(commentList);
+        responseBody.setBookmarkList(bookmarkList);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
 
@@ -36,15 +37,14 @@ public class PostCommentResponseDto extends ResponseDto{
         ResponseDto responseBody = new ResponseDto(ResponseCode.NOT_EXIST_USER, ResponseMessage.NOT_EXIST_USER);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
-    
+
     public static ResponseEntity<ResponseDto> existPost() {
         ResponseDto responseBody = new ResponseDto(ResponseCode.NOT_EXIST_POST, ResponseMessage.NOT_EXIST_POST);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
 
-    public static ResponseEntity<ResponseDto> postCommentFail() {
-        ResponseDto responseBody = new ResponseDto();
+    public static ResponseEntity<ResponseDto> postBookmarkFail() {
+        ResponseDto responseBody = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
     }
-    
 }
