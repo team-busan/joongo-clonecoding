@@ -44,7 +44,7 @@ const SearchBox = ({ setIsSearchBoxOpen }) => {
           ref={searchBox}
           type="text"
           placeholder="어떤 상품을 찾으시나요? 직거래, 택배상품 모두 검색"
-          className="pl-14 pr-4 h-10 w-full lg:w-[400px] xl:w-[500px] rounded bg-lightGray outline-none"
+          className="pl-14 pr-4 h-10 w-full tablet:w-[400px] desktop:w-[500px] rounded bg-lightGray outline-none"
           value={searchValue}
           onChange={(e) => setSearchValue(e.currentTarget.value)}
           onClick={() => setIsSearchBoxClicked((prev) => !prev)}

@@ -8,7 +8,7 @@ import LoginOrSignUpButton from "./LoginOrSignUpButton";
 
 const DesktopHeader = ({ user }) => {
   return (
-    <div className="w-full mx-4 lg:mx-0 lg:w-[1280px] h-[80px] relative flex items-center justify-between ">
+    <div className="mx-4 lg:mx-0 w-full tablet:w-[1024px] desktop:w-[1280px] h-[80px] relative flex items-center justify-between ">
       <CategoryButton />
       <Logo />
       <SearchBox />
