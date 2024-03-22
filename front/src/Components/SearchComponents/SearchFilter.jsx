@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FaPlus, FaMinus } from "react-icons/fa";
-import { IoIosClose } from "react-icons/io";
+import { IoIosClose, IoMdReturnLeft } from "react-icons/io";
 
-export default function SearchFilter({setSelectedCategory, selectedCategory}) {
+export default function SearchFilter({setSelectedCategory, selectedCategory, onPriceChange}) {
   const [categoryBtn, setCategoryBtn] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState(null);
 
@@ -22,15 +22,24 @@ export default function SearchFilter({setSelectedCategory, selectedCategory}) {
 
   const onType = (type) => {
     if(type === 0){
-      setSelectedCategory({...selectedCategory, type : 0})
+      setSelectedCategory({...selectedCategory, product_status : "중고"})
     }else{
-      setSelectedCategory({...selectedCategory, type : 1})
+      setSelectedCategory({...selectedCategory, product_status : "새상품"})
     }
   }
 
   const onCancel = () => {
-    setSelectedCategory({main : "", sub : "", type : ""})
+    setSelectedCategory({main : "", sub : "", product_status : "", lowPrice : 0, highPrice : 0})
   }
+
+  const onLowPrice = (e) => {
+    setSelectedCategory({...selectedCategory, lowPrice : e.target.value});
+  }
+
+  const onHighPrice = (e) => {
+    setSelectedCategory({...selectedCategory, highPrice : e.target.value});
+  }
+
 
   const categories = [
     { id: 1, name: '의류', subcategories: ['여성의류', '남성의류', '유아동', '패션잡화', '악세서리'] },
@@ -78,10 +87,22 @@ export default function SearchFilter({setSelectedCategory, selectedCategory}) {
         <tr>
           <th className="flex items-center bg-gray-200 p-2 font-normal h-16 border-b border-white">가격</th>
           <td className="border-b border-gray-200 p-2 h-16">
-            <input type="text" className="border border-gray-200 rounded-md px-2 py-1 mr-2" placeholder="최소가격" />
+            <input 
+              type="text"
+              className="border border-gray-200 rounded-md px-2 py-1 mr-2" placeholder="최소가격"
+              onChange = {(e) => onLowPrice(e)}
+            />
             <span>~</span>
-            <input type="text" className="border border-gray-200 rounded-md px-2 py-1 ml-2" placeholder="최대가격" />
-            <button className="bg-primary text-white rounded-md px-4 py-1 ml-2">적용</button>
+            <input
+              type="text"
+              className="border border-gray-200 rounded-md px-2 py-1 ml-2" placeholder="최대가격"
+              onChange = {(e) => onHighPrice(e)} />
+            <button 
+              className="bg-primary text-white rounded-md px-4 py-1 ml-2"
+              onClick = {() => onPriceChange()}
+            >
+              적용
+          </button>
           </td>
         </tr>
         <tr>
@@ -111,7 +132,8 @@ export default function SearchFilter({setSelectedCategory, selectedCategory}) {
           <th className="flex items-center bg-gray-200 p-2 font-normal">선택한 필터</th>
           <td className="flex-row border-b border-gray-400 p-2 items-center">
             {selectedCategory.sub ? `${selectedCategory.main}/${selectedCategory.sub}` : selectedCategory.main ? `${selectedCategory.main}` : ''}
-            {selectedCategory.type === 0 ? ` 중고상품` : selectedCategory.type === 1 ? ` 새상품` : ''}
+            {selectedCategory.product_status === "중고" ? ` 중고상품` : selectedCategory.product_status === "새상품" ? ` 새상품` : ''}
+            {(selectedCategory.lowPrice > 0 && selectedCategory.highPrice > 0) ? `${selectedCategory.lowPrice}~${selectedCategory.lowPrice}` : ''}
             <button onClick = {() => onCancel()} className = "">
               <IoIosClose className="text-xl text-center"/>
             </button>

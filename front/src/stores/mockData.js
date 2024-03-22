@@ -333,6 +333,38 @@ export const Products = [
     type: 1, // 직거래 or 택배거래
     sales_status: 0, // 판매중 or 판매완료
   },
+  {
+    product_id: 21,
+    user_id: 1,
+    main_upload_url: "https://source.unsplash.com/random", //상품 이미지
+    sub_upload_url: "https://source.unsplash.com/random",
+    title: "2페이지 상품1",
+    content: "새상품2 입니다",
+    write_date_time: Date.now(),
+    view_count: 100, // 조회수
+    price: 100000,
+    main_category: "전자기기",
+    sub_category: "핸드폰",
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
+  },
+  {
+    product_id: 22,
+    user_id: 1,
+    main_upload_url: "https://source.unsplash.com/random", //상품 이미지
+    sub_upload_url: "https://source.unsplash.com/random",
+    title: "2페이지 상품2",
+    content: "새상품2 입니다",
+    write_date_time: Date.now(),
+    view_count: 100, // 조회수
+    price: 100000,
+    main_category: "전자기기",
+    sub_category: "핸드폰",
+    product_status: "새상품", // 상품 상태 (중고 or 새상품)
+    type: 1, // 직거래 or 택배거래
+    sales_status: 0, // 판매중 or 판매완료
+  },
 ];
 
 export const Bookmarks = [
