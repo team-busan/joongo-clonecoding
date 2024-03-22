@@ -22,12 +22,16 @@ const ProductDetail = () => {
       JSON.parse(localStorage.getItem("viewedProducts")) || [];
 
     if (products.main_upload_url) {
-      if (
-        viewedProducts.includes({
-          product_id: id,
-          main_upload_url: products.main_upload_url,
-        })
-      ) {
+      let alreadyIncludes = false;
+
+      for (let i = 0; i < viewedProducts.length; i++) {
+        if (viewedProducts[i].product_id == id) {
+          alreadyIncludes = true;
+          break;
+        }
+      }
+
+      if (alreadyIncludes) {
         return;
       }
       if (viewedProducts.length >= 3) {
