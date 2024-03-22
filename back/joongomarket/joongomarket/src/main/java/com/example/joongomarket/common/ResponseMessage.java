@@ -11,4 +11,11 @@ public interface ResponseMessage {
 
     String MAIL_FAIL = "Mail send failed.";
     String DATABASE_ERROR = "Database error.";
+
+    String DUPLICATE_EMAIL = "Duplicate Email.";
+    
+    String POST_FAIL = "Post Fail.";
+    String NOT_EXIST_POST = "Not Exist Post.";
+
+    String NOT_EXIST_USER = "Not Exist User.";
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { axiosInstance, API_URL } from "../stores/API";
 import DetailSlick from "../Components/DetailSlick";
@@ -6,16 +6,16 @@ import DetailContents from "../Components/DetailContents";
 import DetailInfo from "../Components/DetailInfo";
 import Comment from "../Components/Comment";
 
-
 const ProductDetail = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [products, setProducts] = useState({});
   const [users, setUsers] = useState({});
   const [salesProducts, setSalesProducts] = useState([]);
   const [comments, setComments] = useState([]);
   
   useEffect(() => {
-    axiosInstance.get(`/product/${id}`) 
+    axiosInstance
+      .get(`/product/${id}`)
       .then((res) => {
         setProducts(res.data.product);
         setUsers(res.data.user);
@@ -25,8 +25,41 @@ const ProductDetail = () => {
       .catch((error) => {
         console.log("Detail", error);
       });
-
   }, [id]);
+
+  useEffect(() => {
+    const viewedProducts =
+      JSON.parse(localStorage.getItem("viewedProducts")) || [];
+
+    if (products.main_upload_url) {
+      let alreadyIncludes = false;
+
+      for (let i = 0; i < viewedProducts.length; i++) {
+        if (viewedProducts[i].product_id == id) {
+          alreadyIncludes = true;
+          break;
+        }
+      }
+
+      if (alreadyIncludes) {
+        return;
+      }
+      if (viewedProducts.length >= 3) {
+        viewedProducts.pop();
+        viewedProducts.unshift({
+          product_id: id,
+          main_upload_url: products.main_upload_url,
+        });
+      } else {
+        viewedProducts.unshift({
+          product_id: id,
+          main_upload_url: products.main_upload_url,
+        });
+      }
+    }
+
+    localStorage.setItem("viewedProducts", JSON.stringify(viewedProducts));
+  }, [products]);
 
   console.log(products);
   return (
