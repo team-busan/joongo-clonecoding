@@ -12,4 +12,7 @@ public interface PostRepository extends JpaRepository<PostsEntity, Integer> {
     PostsEntity findByPostId(int postId);
     List<PostsEntity> findByOrderByWriteDateTimeDesc();
     List<PostsEntity> findByUserIdOrderByWriteDateTimeDesc(String userId);
+    List<PostsEntity> findTop30ByMainCategoryOrderByWriteDateTimeDesc(String mainCategory);
+    List<PostsEntity> findTop30ByOrderByViewCountDesc();
+    List<PostsEntity> findTop30ByOrderByWriteDateTimeDesc();
 }

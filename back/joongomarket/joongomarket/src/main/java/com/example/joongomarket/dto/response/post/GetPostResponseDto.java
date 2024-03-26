@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import com.example.joongomarket.common.ResponseCode;
 import com.example.joongomarket.common.ResponseMessage;
 import com.example.joongomarket.dto.response.ResponseDto;
+import com.example.joongomarket.entity.BookmarkEntity;
 import com.example.joongomarket.entity.CommentEntity;
 import com.example.joongomarket.entity.PostsEntity;
 
@@ -21,14 +22,17 @@ public class GetPostResponseDto extends ResponseDto {
 
     private List<CommentEntity> commentList;
 
+    private List<BookmarkEntity> bookmarkList;
+
     private GetPostResponseDto() {
         super();
     }
 
-    public static ResponseEntity<GetPostResponseDto> success(PostsEntity postsEntity, List<CommentEntity> commentList) {
+    public static ResponseEntity<GetPostResponseDto> success(PostsEntity postsEntity, List<CommentEntity> commentList, List<BookmarkEntity> bookmarkList) {
         GetPostResponseDto responseBody = new GetPostResponseDto();
         responseBody.setPostsEntity(postsEntity);
         responseBody.setCommentList(commentList);
+        responseBody.setBookmarkList(bookmarkList);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
 

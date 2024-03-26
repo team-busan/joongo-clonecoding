@@ -16,7 +16,9 @@ import com.example.joongomarket.dto.request.post.PostCommentRequestDto;
 import com.example.joongomarket.dto.request.post.PostRequestDto;
 import com.example.joongomarket.dto.response.post.GetPostListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostMyListResponseDto;
+import com.example.joongomarket.dto.response.post.GetPostRandomCategoryResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostResponseDto;
+import com.example.joongomarket.dto.response.post.GetPostTopListResponseDto;
 import com.example.joongomarket.dto.response.post.PostBookmarkResponseDto;
 import com.example.joongomarket.dto.response.post.PostCommentResponseDto;
 import com.example.joongomarket.dto.response.post.PostResponseDto;
@@ -78,6 +80,24 @@ public class PostController {
         @RequestBody @Valid PostBookmarkReqeustDto requestBody
     ) {
         ResponseEntity<? super PostBookmarkResponseDto> response = postService.postBookmark(userId, requestBody);
+        return response;
+    }
+
+    @GetMapping("/random")
+    public ResponseEntity<? super GetPostRandomCategoryResponseDto> getPostRandom() {
+        ResponseEntity<? super GetPostRandomCategoryResponseDto> response = postService.getRandomPost();
+        return response;
+    }
+
+    @GetMapping("/top")
+    public ResponseEntity<? super GetPostTopListResponseDto> getPostTop() {
+        ResponseEntity<? super GetPostTopListResponseDto> response = postService.getPostTop();
+        return response;
+    }
+
+    @GetMapping("/list30")
+    public ResponseEntity<? super List<GetPostListResponseDto>> getList30() {
+        ResponseEntity<? super List<GetPostListResponseDto>> response = postService.getList30();
         return response;
     }
 }

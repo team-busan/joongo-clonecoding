@@ -9,10 +9,8 @@ import com.example.joongomarket.entity.UsersEntity;
 public interface UserRepository extends JpaRepository<UsersEntity, String> {
 
     UsersEntity findByUserId(String userId);
-
     boolean existsByUserId(String userId);
-
     UsersEntity findByUserNickname(String userNickname);
-
+    boolean existsByUserNickname(String userNickname);
     boolean existsByUserEmail(String userEmail);
 }

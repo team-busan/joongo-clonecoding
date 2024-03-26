@@ -1,6 +1,7 @@
 package com.example.joongomarket.service.implement;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,9 @@ import com.example.joongomarket.dto.request.post.PostRequestDto;
 import com.example.joongomarket.dto.response.ResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostMyListResponseDto;
+import com.example.joongomarket.dto.response.post.GetPostRandomCategoryResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostResponseDto;
+import com.example.joongomarket.dto.response.post.GetPostTopListResponseDto;
 import com.example.joongomarket.dto.response.post.PostBookmarkResponseDto;
 import com.example.joongomarket.dto.response.post.PostCommentResponseDto;
 import com.example.joongomarket.dto.response.post.PostResponseDto;
@@ -70,7 +73,8 @@ public class PostServiceImplement implements PostService {
                 return GetPostResponseDto.existPost();
             }else {
                 List<CommentEntity> commentList = commentRepository.findByPostIdOrderByWriteDateTimeDesc(postId);
-                return GetPostResponseDto.success(postsEntity, commentList);
+                List<BookmarkEntity> bookmarkList = bookmarkRepository.findByPostId(postId);
+                return GetPostResponseDto.success(postsEntity, commentList, bookmarkList);
             }
         }catch(Exception exception){
             exception.printStackTrace();
@@ -142,6 +146,7 @@ public class PostServiceImplement implements PostService {
         }
     }
 
+    //? 북마크 기능
     @Override
     public ResponseEntity<? super PostBookmarkResponseDto> postBookmark(String userId, PostBookmarkReqeustDto dto) {
         int postId = dto.getPostId();
@@ -171,4 +176,56 @@ public class PostServiceImplement implements PostService {
             return PostBookmarkResponseDto.postBookmarkFail();
         }
     }
+    
+    //? 카테고리 랜덤(홈 화면에 쓰임)
+    @Override
+    public ResponseEntity<? super GetPostRandomCategoryResponseDto> getRandomPost() {
+        try {
+            String[] mainCategories = {"의류", "전자기기", "가구/인테리어", "리빙/생활", "반려동물/취미"};
+            Random random = new Random();
+            String randomCategory = mainCategories[random.nextInt(mainCategories.length)];
+
+            List<PostsEntity> posts = postRepository.findTop30ByMainCategoryOrderByWriteDateTimeDesc(randomCategory);
+
+            GetPostRandomCategoryResponseDto responseDto = new GetPostRandomCategoryResponseDto();
+            responseDto.setPostList(posts);
+            return GetPostRandomCategoryResponseDto.success(posts);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return GetPostRandomCategoryResponseDto.getPostRandomFail();
+        }
+    }
+
+    //? 조회수 많은 게시물 리스트
+    @Override
+    public ResponseEntity<? super GetPostTopListResponseDto> getPostTop() {
+        try {
+            List<PostsEntity> posts = postRepository.findTop30ByOrderByViewCountDesc();
+            GetPostTopListResponseDto response = new GetPostTopListResponseDto();
+            response.setPostList(posts);
+            return GetPostTopListResponseDto.success(posts);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return GetPostTopListResponseDto.databaseError();
+        }
+    }
+
+    //? 최신순 30개 가져오기
+    @Override
+    public ResponseEntity<? super List<GetPostListResponseDto>> getList30() {
+        try {
+            List<PostsEntity> postList = postRepository.findTop30ByOrderByWriteDateTimeDesc();
+        
+            List<GetPostListItemDto> responseList = GetPostListItemDto.copyList(postList);
+            
+        return ResponseEntity.status(HttpStatus.OK).body(responseList);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            GetPostListResponseDto.databaseError();
+
+            ResponseDto errorResponse = new ResponseDto(ResponseCode.DATABASE_ERROR, ResponseMessage.DATABASE_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
+    }
+
 }

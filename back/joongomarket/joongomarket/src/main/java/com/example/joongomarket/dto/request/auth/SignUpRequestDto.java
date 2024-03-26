@@ -1,5 +1,7 @@
 package com.example.joongomarket.dto.request.auth;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -12,6 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SignUpRequestDto {
     @NotBlank
+    @Length(min = 8, max = 15)
     private String userId;
 
     @NotBlank
