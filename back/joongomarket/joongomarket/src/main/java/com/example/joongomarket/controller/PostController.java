@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.joongomarket.dto.request.post.PostBookmarkReqeustDto;
 import com.example.joongomarket.dto.request.post.PostCommentRequestDto;
 import com.example.joongomarket.dto.request.post.PostRequestDto;
+import com.example.joongomarket.dto.response.post.DeletePostResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostMyListResponseDto;
 import com.example.joongomarket.dto.response.post.GetPostRandomCategoryResponseDto;
@@ -98,6 +100,15 @@ public class PostController {
     @GetMapping("/list30")
     public ResponseEntity<? super List<GetPostListResponseDto>> getList30() {
         ResponseEntity<? super List<GetPostListResponseDto>> response = postService.getList30();
+        return response;
+    }
+
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<? super DeletePostResponseDto> deletePost(
+        @AuthenticationPrincipal String userId,
+        @PathVariable("postId") int postId
+    ) {
+        ResponseEntity<? super DeletePostResponseDto> response = postService.deletePost(userId, postId);
         return response;
     }
 }
