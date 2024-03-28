@@ -2,10 +2,12 @@ import { MdShare, MdAssignment } from "react-icons/md";
 import React, { useState } from "react";
 import Card from "../Components/Card.jsx";
 import { Products } from "../stores/mockData.js";
+import { useParams } from "react-router-dom";
 
 const User = () => {
   const [selectedButton, setSelectedButton] = useState("전체");
   const [selectedTab, setSelectedTab] = useState("최신순");
+  let { id } = useParams();
 
   return (
     <div className="flex justify-center w-[1280px space-x-8">
